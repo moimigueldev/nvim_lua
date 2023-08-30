@@ -1,9 +1,8 @@
-preservim/nerdtree
-mattn/emmet-vim
-neoclide/coc.nvim
-morhetz/gruvbox
-vim-airline/vim-airline
-vim-airline/vim-airline-themes
+-- preservim/nerdtree
+-- morhetz/gruvbox
+-- neoclide/coc.nvim
+-- vim-airline/vim-airline
+-- vim-airline/vim-airline-themes
 tpope/vim-fugitive
 honza/vim-snippets
 mg979/vim-visual-multi
@@ -13,4 +12,5 @@ tomtom/tcomment_vim
 Yggdroot/indentLine
 nvim-lua/plenary.nvim
 nvim-telescope/telescope.nvim
+mattn/emmet-vim
 

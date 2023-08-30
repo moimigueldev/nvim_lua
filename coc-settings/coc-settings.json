@@ -1,0 +1,39 @@
+{
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "javascript",
+    "typescript",
+    "markdown",
+    "json",
+    "yaml"
+  ],
+  "prettier.filetypes": [
+    "css",
+    "html",
+    "javascript",
+    "typescript",
+    "markdown",
+    "json",
+    "yaml"
+  ],
+  "tsserver.formatOnType": true,
+  "css.validate": true,
+  "html.autoClosingTags": true,
+  "html.validate": true,
+  "pairs.enable": true,
+  "pairs.additionalPairs": {
+    "javascript": [
+      ["{", "}"],
+      ["[", "]"],
+      ["(", ")"]
+    ]
+  },
+  "snippets.ultisnips.pythonPrompt": false,
+  "snippets.ultisnips.directories": [
+    "./plugged/coc/ultisnips",
+    "honza/vim-snippets/UltiSnips",
+    "UltiSnips"
+  ]
+}

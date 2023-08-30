@@ -8,13 +8,25 @@ end
 
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
-  -- Add your plugins here
+  use 'preservim/nerdtree'
+  use 'gruvbox-community/gruvbox'
+  use {'neoclide/coc.nvim', branch = 'release'}
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  use 'tpope/vim-fugitive'
+
 end)
 
 
 
 -- Keybinding for NERDTree
 vim.api.nvim_set_keymap('n', '<C-b>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>n', ':NERDTreeFind<CR>', { noremap = true, silent = true })
+
+-- Airline Configuration
+vim.g['airline#extensions#tabline#enabled'] = 1
+vim.g['airline#extensions#tabline#fnamemod'] = ':t'
+vim.g.airline_theme = 'base16'
 
 
 
@@ -42,10 +54,9 @@ vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 vim.bo.expandtab = true
 -- Equivalent of 'set autoindent'
--- vim.bo.autoindent = true  -- Uncomment this line if you want auto-indent
+vim.bo.autoindent = true  -- Uncomment this line if you want auto-indent
 vim.o.mouse = 'a'
--- Equivalent of 'colorscheme gruvbox'
 vim.cmd('colorscheme slate')
--- vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme gruvbox')
 vim.cmd('filetype plugin indent on')
 
