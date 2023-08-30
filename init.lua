@@ -14,20 +14,33 @@ require('packer').startup(function()
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   use 'tpope/vim-fugitive'
-
+  use 'honza/vim-snippets'
+  use 'Yggdroot/indentLine'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'sindrets/diffview.nvim'
+  use 'mg979/vim-visual-multi'
+  use 'tomtom/tcomment_vim'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use 'mattn/emmet-vim'
+  use 'ryanoasis/vim-devicons'
 end)
 
 
 
 -- Keybinding for NERDTree
 vim.api.nvim_set_keymap('n', '<C-b>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>n', ':NERDTreeFind<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n','<leader>n', ':NERDTreeFind<CR>', { noremap = true, silent = true })
+vim.g.webdevicons_enable_nerdtree = 1 
 
 -- Airline Configuration
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#fnamemod'] = ':t'
 vim.g.airline_theme = 'base16'
 
+-- Key Mapping for Telescope
+vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
 
 
@@ -59,4 +72,19 @@ vim.o.mouse = 'a'
 vim.cmd('colorscheme slate')
 vim.cmd('colorscheme gruvbox')
 vim.cmd('filetype plugin indent on')
+
+
+function toggle_diffview()
+    if vim.g.DiffviewIsOpen == 1 then
+        vim.cmd("DiffviewClose")
+        vim.g.DiffviewIsOpen = 0
+    else
+        vim.cmd("DiffviewOpen")
+        vim.g.DiffviewIsOpen = 1
+    end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>dt', [[<Cmd>lua toggle_diffview()<CR>]], { noremap = true, silent = true })
+
+vim.g.diffview_use_icons = true
 
