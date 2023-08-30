@@ -1,40 +1,29 @@
 {
-  "coc.preferences.snippets.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-   "vue",
-    "css",
-    "html",
-    "javascript",
-    "typescript",
-    "markdown",
-    "json",
-    "yaml"
-  ],
-  "prettier.filetypes": [
-    "css",
-    "html",
-    "javascript",
-    "typescript",
-    "markdown",
-    "json",
-    "yaml"
-  ],
-  "tsserver.formatOnType": true,
   "css.validate": true,
   "html.autoClosingTags": true,
-  "html.validate": true,
-  "pairs.enable": true,
-  "pairs.additionalPairs": {
-    "javascript": [
-      ["{", "}"],
-      ["[", "]"],
-      ["(", ")"]
-    ]
-  },
   "snippets.ultisnips.pythonPrompt": false,
-  "snippets.ultisnips.directories": [
-    "./plugged/coc/ultisnips",
-    "honza/vim-snippets/UltiSnips",
-    "UltiSnips"
-  ]
+  "[vue]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[css]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[html]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[javascript]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[typescript]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[markdown]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[json]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[yaml]": {
+    "coc.preferences.formatOnSave": true
+  }
 }
