@@ -1,6 +1,7 @@
 {
   "css.validate": true,
   "html.autoClosingTags": true,
+  "prettier.enable": true,
   "snippets.ultisnips.pythonPrompt": false,
   "[vue]": {
     "coc.preferences.formatOnSave": true
