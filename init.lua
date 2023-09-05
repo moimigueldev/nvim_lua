@@ -19,12 +19,16 @@ end
 
 
 
+
+
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
+  use 'kaicataldo/material.vim'
   use 'preservim/nerdtree'
   use 'gruvbox-community/gruvbox'
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'vim-airline/vim-airline'
+  use 'Pocco81/Catppuccino.nvim'
   use 'vim-airline/vim-airline-themes'
   use 'tpope/vim-fugitive'
   use 'honza/vim-snippets'
@@ -38,6 +42,13 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'ryanoasis/vim-devicons'
   use { 'junegunn/goyo.vim' }
+  use 'vimwiki/vimwiki'
+  use 'luochen1990/rainbow'
+use 'andymass/vim-matchup'
+use 'neovim/nvim-lspconfig'
+
+
+
 use {
   'nvim-treesitter/nvim-treesitter',
   run = ':TSUpdate',
@@ -51,6 +62,13 @@ use {
   end,
 } 
 end)
+
+
+local nvim_lsp = require('lspconfig')
+
+nvim_lsp.tsserver.setup{}
+
+
 
 
 
@@ -78,7 +96,6 @@ vim.api.nvim_set_keymap('i', '<S-TAB>', [[pumvisible() ? "\<C-p>" : "\<S-TAB>"]]
 vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"]], {expr = true, noremap = true})
 
 
-
 -- Set Tabs Spacing
 vim.cmd[[autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab]]
 
@@ -94,6 +111,8 @@ vim.api.nvim_set_keymap('n', '<leader>[', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>]', '<C-w>l', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>c', [[<Cmd>lua vim.api.nvim_buf_delete(0, { force = true })<CR>]], { noremap = true, silent = true })
 
+
+vim.api.nvim_set_keymap('n', '<leader>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
 
 
 
@@ -148,4 +167,34 @@ vim.api.nvim_exec([[
 ]], false)
 
 
+vim.g.vimwiki_list = {{
+  path = '~/vimwiki/',
+  syntax = 'markdown',
+  ext = '.md'
+}}
 
+vim.api.nvim_set_keymap('n', '<Leader>l', '<Plug>VimwikiIndex', {})
+
+vim.g.rainbow_active = 1 -- set to 0 if you want to disable the plugin
+
+vim.g.rainbow_conf = {
+    guifgs = {'Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple'}, -- set your colors here
+    terms = {'ctermfg=1', 'ctermfg=3', 'ctermfg=3', 'ctermfg=2', 'ctermfg=4', 'ctermfg=5'}, -- if you use terminal vim and want to set terminal colors
+    operators = '_,_',
+    parens = {'start=\\(/ end=\\)/ fold', 'start=\\[/ end=\\]/ fold', 'start=\\{/ end=\\}/ fold'}, -- default delimiters, you can add more
+    termcolors = {1, 3, 3, 2, 4, 5}, -- terminal colors
+    separately = {} -- empty to apply to all filetypes
+}
+
+-- Specify for Vue files
+vim.g.rainbow_conf.separately['vue'] = {
+    parens = {
+        'start=\\{/ end=\\}/ fold',
+        'start=\\[/ end=\\]/ fold',
+        'start=\\(/ end=\\)/ fold',
+        'start=<template> end=</template> fold',
+        'start=<script> end=</script> fold',
+        'start=<style> end=</style> fold',
+    },
+    -- Add or modify other settings specific to Vue as necessary
+}
