@@ -26,5 +26,8 @@
   },
   "[yaml]": {
     "coc.preferences.formatOnSave": true
+  },
+  "[cpp]": {
+    "coc.preferences.formatOnSave": true
   }
 }
