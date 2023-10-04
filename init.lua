@@ -39,6 +39,9 @@ require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'mattn/emmet-vim'
+  -- use 'hrsh7th/nvim-compe'
+use 'rhysd/vim-clang-format'
+
   use 'ryanoasis/vim-devicons'
   use { 'junegunn/goyo.vim' }
   use 'vimwiki/vimwiki'
@@ -67,6 +70,15 @@ local nvim_lsp = require('lspconfig')
 
 nvim_lsp.tsserver.setup{}
 nvim_lsp.pyright.setup{}
+
+nvim_lsp.clangd.setup{
+    on_attach = function(client, bufnr)
+        -- Your `on_attach` function here if you have one
+    end,
+    cmd = { "clangd", "--background-index" },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+}
+
 
 
 vim.cmd [[
@@ -142,7 +154,8 @@ vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"]
 
 
 -- Set Tabs Spacing
-vim.cmd[[autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab]]
+vim.cmd[[autocmd FileType javascript,javascriptreact,vue setlocal tabstop=2 shiftwidth=2 expandtab]]
+
 
 
 -- Basic Key mappings
@@ -261,4 +274,9 @@ vim.api.nvim_set_keymap('n', '<Leader>y', 'ggVG"+y', { noremap = true, silent = 
 vim.api.nvim_set_keymap('v', '<Leader>y', '"+y', { noremap = true, silent = true })
 
 
+vim.g.clang_format_auto = 1
+vim.g.clang_format_on_save = 1
+vim.bo.tabstop = 4
+vim.bo.shiftwidth = 4
+vim.cmd[[autocmd FileType cpp,hpp setlocal tabstop=2 shiftwidth=2 expandtab]]
 
