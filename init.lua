@@ -44,7 +44,6 @@ use 'rhysd/vim-clang-format'
 
   use 'ryanoasis/vim-devicons'
   use { 'junegunn/goyo.vim' }
-  use 'vimwiki/vimwiki'
   use 'luochen1990/rainbow'
 use 'andymass/vim-matchup'
 use 'neovim/nvim-lspconfig'
@@ -225,13 +224,7 @@ vim.api.nvim_exec([[
 ]], false)
 
 
-vim.g.vimwiki_list = {{
-  path = '~/vimwiki/',
-  syntax = 'markdown',
-  ext = '.md'
-}}
 
-vim.api.nvim_set_keymap('n', '<Leader>l', '<Plug>VimwikiIndex', {})
 
 vim.g.rainbow_active = 1 -- set to 0 if you want to disable the plugin
 
