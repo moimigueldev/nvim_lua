@@ -279,4 +279,3 @@ vim.g.clang_format_on_save = 1
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 vim.cmd[[autocmd FileType cpp,hpp setlocal tabstop=2 shiftwidth=2 expandtab]]
-
