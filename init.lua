@@ -1,4 +1,3 @@
-
 --
 -- ███    ███  ██████  ██ ███████     ███    ██ ██    ██ ██ ███    ███ 
 -- ████  ████ ██    ██ ██ ██          ████   ██ ██    ██ ██ ████  ████ 
@@ -6,7 +5,6 @@
 -- ██  ██  ██ ██    ██ ██      ██     ██  ██ ██  ██  ██  ██ ██  ██  ██ 
 -- ██      ██  ██████  ██ ███████     ██   ████   ████   ██ ██      ██ 
 --                                                                     
--- ]]
 
 
 
@@ -36,7 +34,6 @@ require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'mattn/emmet-vim'
-  -- use 'hrsh7th/nvim-compe'
 use 'rhysd/vim-clang-format'
 
   use 'ryanoasis/vim-devicons'
@@ -46,6 +43,7 @@ use 'andymass/vim-matchup'
 use 'neovim/nvim-lspconfig'
 use 'tpope/vim-surround'  
 use 'malbertzard/inline-fold.nvim'
+use 'voldikss/vim-floaterm'
 use {
   'nvim-treesitter/nvim-treesitter',
   run = ':TSUpdate',
@@ -129,6 +127,9 @@ vim.api.nvim_set_keymap('n', '<Leader>{', '<Cmd>lua surround.surround("{", "}")<
 vim.api.nvim_set_keymap('n', '<C-b>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n','<leader>n', ':NERDTreeFind<CR>', { noremap = true, silent = true })
 vim.g.webdevicons_enable_nerdtree = 1 
+-- Show hidden files in NERDTree
+vim.g.NERDTreeShowHidden = 1
+
 
 -- Airline Configuration
 vim.g['airline#extensions#tabline#enabled'] = 1
@@ -271,3 +272,12 @@ vim.bo.shiftwidth = 4
 vim.cmd[[autocmd FileType cpp,hpp setlocal tabstop=2 shiftwidth=2 expandtab]]
 vim.cmd [[ autocmd BufWritePre *.cpp,*.hpp ClangFormat ]]
 
+
+-- Floaterm key mappings
+vim.g.floaterm_keymap_toggle = '<Leader>t'
+-- vim.g.floaterm_keymap_next   = '<Leader>tn'
+-- vim.g.floaterm_keymap_prev   = '<Leader>tp'
+-- vim.g.floaterm_keymap_new    = '<Leader>tt'
+vim.g.floaterm_width=0.8
+vim.g.floaterm_height=0.8
+vim.g.floaterm_title='Mois Terminal'
