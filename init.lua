@@ -37,7 +37,6 @@ require('packer').startup(function()
 use 'rhysd/vim-clang-format'
 
   use 'ryanoasis/vim-devicons'
-  use { 'junegunn/goyo.vim' }
   use 'luochen1990/rainbow'
 use 'andymass/vim-matchup'
 use 'neovim/nvim-lspconfig'
@@ -105,8 +104,6 @@ nvim_lsp.cssls.setup{
         buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
         buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-        buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-        buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     end,
 }
@@ -160,7 +157,6 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>x', ':x<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>qq', ':q!<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>t', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>\\', ':vsp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>[', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>]', '<C-w>l', { noremap = true })
@@ -206,20 +202,6 @@ end
 vim.api.nvim_set_keymap('n', '<leader>dt', [[<Cmd>lua toggle_diffview()<CR>]], { noremap = true, silent = true })
 
 vim.g.diffview_use_icons = true
-
-vim.api.nvim_set_keymap('n', '<leader>g', [[<Cmd>Goyo<CR>]], { noremap = true, silent = true })
-vim.api.nvim_exec([[
-  function! s:goyo_enter()
-    set number
-  endfunction
-
-  function! s:goyo_leave()
-    set nonumber
-  endfunction
-
-  autocmd! User GoyoEnter nested call s:goyo_enter()
-  autocmd! User GoyoLeave nested call s:goyo_leave()
-]], false)
 
 
 
@@ -267,11 +249,12 @@ vim.api.nvim_set_keymap('v', '<Leader>y', '"+y', { noremap = true, silent = true
 
 vim.g.clang_format_auto = 1
 vim.g.clang_format_on_save = 1
-vim.bo.tabstop = 4
-vim.bo.shiftwidth = 4
 vim.cmd[[autocmd FileType cpp,hpp setlocal tabstop=2 shiftwidth=2 expandtab]]
 vim.cmd [[ autocmd BufWritePre *.cpp,*.hpp ClangFormat ]]
 
+vim.cmd([[
+    autocmd TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>:FloatermToggle<CR>
+]])
 
 -- Floaterm key mappings
 vim.g.floaterm_keymap_toggle = '<Leader>t'
