@@ -15,46 +15,46 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd 'packadd packer.nvim'
 end
 
-require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
-  use 'kaicataldo/material.vim'
-  use 'preservim/nerdtree'
-  use 'gruvbox-community/gruvbox'
-  use {'neoclide/coc.nvim', branch = 'release'}
-  use 'vim-airline/vim-airline'
-  use 'Pocco81/Catppuccino.nvim'
-  use 'vim-airline/vim-airline-themes'
-  use 'tpope/vim-fugitive'
-  use 'honza/vim-snippets'
-  use 'Yggdroot/indentLine'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'sindrets/diffview.nvim'
-  use 'mg979/vim-visual-multi'
-  use 'tomtom/tcomment_vim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'mattn/emmet-vim'
-use 'rhysd/vim-clang-format'
 
-  use 'ryanoasis/vim-devicons'
+require('packer').startup(function()
+  use 'andymass/vim-matchup'
+  use 'gruvbox-community/gruvbox'
+  use 'honza/vim-snippets'
+  use 'kaicataldo/material.vim'
+  use 'kyazdani42/nvim-web-devicons'
   use 'luochen1990/rainbow'
-use 'andymass/vim-matchup'
-use 'neovim/nvim-lspconfig'
-use 'tpope/vim-surround'  
-use 'malbertzard/inline-fold.nvim'
-use 'voldikss/vim-floaterm'
-use {
-  'nvim-treesitter/nvim-treesitter',
-  run = ':TSUpdate',
-  config = function()
-    require'nvim-treesitter.configs'.setup {
-      ensure_installed = {"python", "javascript"},  -- list of languages you want to enable
-      highlight = {
-        enable = true,  -- enable highlighting
-      },
-    }
-  end,
-} 
+  use 'malbertzard/inline-fold.nvim'
+  use 'mattn/emmet-vim'
+  use 'mg979/vim-visual-multi'
+  use 'neovim/nvim-lspconfig'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = {"python", "javascript"},  -- list of languages you want to enable
+        highlight = {
+          enable = true,  -- enable highlighting
+        },
+      }
+    end,
+  }
+  use 'nvim-telescope/telescope.nvim'
+  use 'Pocco81/Catppuccino.nvim'
+  use 'preservim/nerdtree'
+  use 'rhysd/vim-clang-format'
+  use 'ryanoasis/vim-devicons'
+  use 'sindrets/diffview.nvim'
+  use 'tomtom/tcomment_vim'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-surround'
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  use 'voldikss/vim-floaterm'
+  use 'wbthomason/packer.nvim'
+  use {'neoclide/coc.nvim', branch = 'release'}
+  use 'Yggdroot/indentLine'
+  use 'nvim-lua/plenary.nvim'
 end)
 
 
