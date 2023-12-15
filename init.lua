@@ -32,7 +32,7 @@ require('packer').startup(function()
     run = ':TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = {"python", "javascript"},  -- list of languages you want to enable
+        ensure_installed = {"python", "javascript", "typescript"},  -- list of languages you want to enable
         highlight = {
           enable = true,  -- enable highlighting
         },
@@ -55,13 +55,17 @@ require('packer').startup(function()
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'Yggdroot/indentLine'
   use 'nvim-lua/plenary.nvim'
+  use 'maxmellon/vim-jsx-pretty'
 end)
 
 
 
 local nvim_lsp = require('lspconfig')
 
-nvim_lsp.tsserver.setup{}
+nvim_lsp.tsserver.setup{
+    filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
+    -- You can add other configurations here as needed
+}
 nvim_lsp.pyright.setup{}
 
 nvim_lsp.clangd.setup{
@@ -264,3 +268,16 @@ vim.g.floaterm_keymap_toggle = '<Leader>t'
 vim.g.floaterm_width=0.8
 vim.g.floaterm_height=0.8
 vim.g.floaterm_title='Mois Terminal'
+
+
+vim.cmd [[
+  autocmd BufRead,BufNewFile *.jsx,*.tsx setlocal filetype=javascriptreact
+]]
+
+_G.clear_search_highlight = function()
+    vim.cmd('noh')
+    -- Return the escape sequence to leave normal mode
+    return vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+end
+vim.api.nvim_set_keymap('n', '<Esc>', 'v:lua.clear_search_highlight()', { noremap = true, expr = true, silent = true })
+

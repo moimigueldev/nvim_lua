@@ -29,5 +29,16 @@
   },
   "[cpp]": {
     "coc.preferences.formatOnSave": true
-  }
+  },
+  "[javascriptreact]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "emmet.includeLanguages": {
+    "javascriptreact": "html",
+    "typescriptreact": "html"
+  },
+  "emmet.showSuggestionsAsSnippets": true
 }
