@@ -56,11 +56,24 @@ require('packer').startup(function()
   use 'Yggdroot/indentLine'
   use 'nvim-lua/plenary.nvim'
   use 'maxmellon/vim-jsx-pretty'
+  use 'sbdchd/neoformat'
+
 end)
 
 
 
 local nvim_lsp = require('lspconfig')
+
+-- Configure rust-analyzer as the LSP server for Rust
+nvim_lsp.rust_analyzer.setup({
+  -- Your configuration options for rust-analyzer here
+  -- For example, you can specify custom settings:
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = true,
+    },
+  },
+})
 
 nvim_lsp.tsserver.setup{
     filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
@@ -280,4 +293,19 @@ _G.clear_search_highlight = function()
     return vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
 end
 vim.api.nvim_set_keymap('n', '<Esc>', 'v:lua.clear_search_highlight()', { noremap = true, expr = true, silent = true })
+
+
+
+
+
+-- Configure neoformat to use rustfmt for Rust
+vim.cmd([[
+  let g:neoformat_enabled_rust = ['rustfmt']
+]])
+
+-- Automatically run neoformat on save for Rust files
+vim.cmd([[
+  autocmd BufWritePre *.rs Neoformat
+]])
+
 
