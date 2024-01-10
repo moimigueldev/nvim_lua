@@ -57,7 +57,6 @@ require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'maxmellon/vim-jsx-pretty'
   use 'sbdchd/neoformat'
-
 end)
 
 
@@ -68,11 +67,18 @@ local nvim_lsp = require('lspconfig')
 nvim_lsp.rust_analyzer.setup({
   -- Your configuration options for rust-analyzer here
   -- For example, you can specify custom settings:
-  settings = {
-    ["rust-analyzer"] = {
-      checkOnSave = true,
+-- Within your rust-analyzer setup in nvim_lsp
+settings = {
+  ["rust-analyzer"] = {
+    checkOnSave = {
+      command = "clippy",
+    },
+    rustfmt = {
+      enable = false, -- Disable rust-analyzer's formatting
     },
   },
+},
+
 })
 
 nvim_lsp.tsserver.setup{
@@ -193,7 +199,6 @@ vim.api.nvim_set_keymap('n', '<Leader>}', ':bnext<CR>', { noremap = true })
 vim.cmd('syntax enable')
 vim.wo.number = true
 -- Equivalent of 'set relativenumber'
--- vim.wo.relativenumber = true  -- Uncomment this line if you want relative numbers
 vim.bo.tabstop = 2
 vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
@@ -201,6 +206,7 @@ vim.bo.expandtab = true
 -- vim.bo.autoindent = true  -- Uncomment this line if you want auto-indent
 vim.o.mouse = 'a'
 vim.cmd('colorscheme slate')
+-- vim.cmd('colorscheme gruvbox')
 vim.cmd('colorscheme gruvbox')
 vim.cmd('filetype plugin indent on')
 
@@ -299,7 +305,16 @@ vim.api.nvim_set_keymap('n', '<Esc>', 'v:lua.clear_search_highlight()', { norema
 
 
 -- Configure neoformat to use rustfmt for Rust
+-- vim.cmd([[
+--   let g:neoformat_enabled_rust = ['rustfmt']
+-- ]])
+
 vim.cmd([[
+  let g:neoformat_rust_rustfmt = {
+            \ 'exe': 'rustup',
+            \ 'args': ['run', 'nightly', 'rustfmt', '--edition', '2021'],
+            \ 'stdin': 1,
+            \ }
   let g:neoformat_enabled_rust = ['rustfmt']
 ]])
 
@@ -307,5 +322,8 @@ vim.cmd([[
 vim.cmd([[
   autocmd BufWritePre *.rs Neoformat
 ]])
+
+
+-- vim.g.neoformat_verbose = 1
 
 
